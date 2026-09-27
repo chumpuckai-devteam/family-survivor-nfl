@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
+<meta name="pick-api" content="https://desktops-need-discharge-biggest.trycloudflare.com">
 <meta name="color-scheme" content="light dark">
 <meta http-equiv="refresh" content="300">
 <title>Family Survivor NFL</title>
@@ -143,6 +144,20 @@ td.used { color: var(--text); font-weight: 700; }
 td.used.w { color: var(--win); }
 td.used.l { color: var(--loss); }
 td.open { color: var(--open); }
+.form label { display: block; margin: 12px 0; font-weight: 650; }
+.form select, .form input {
+  display: block; width: 100%; max-width: 420px; margin-top: 4px; padding: 10px;
+  background: var(--bg); color: var(--text); border: 1px solid var(--text); border-radius: 8px;
+  font: 16px/1.3 ui-sans-serif, system-ui, sans-serif;
+}
+.form .actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+.form button {
+  background: var(--text); color: var(--bg); border: 1px solid var(--text);
+  border-radius: 999px; padding: 10px 14px; font: 600 14px/1 ui-sans-serif, system-ui, sans-serif;
+  cursor: pointer;
+}
+.form button.secondary { background: var(--bg); color: var(--text); }
+#pick-msg { font-weight: 650; min-height: 1.4em; }
 footer { margin-top: 36px; color: var(--muted); font-size: 14px; }
 </style>
 </head>
@@ -157,8 +172,28 @@ footer { margin-top: 36px; color: var(--muted); font-size: 14px; }
 <p class="kicker">Family pool</p>
 <h1>Survivor NFL</h1>
 <p class="sub">Weeks 4–18, 2026. Straight up. Best record wins. A tie at the end splits.</p>
-<p class="updated">Updated Sep 27, 2026 · 1:33pm ET</p>
+<p class="updated">Updated Sep 27, 2026 · 2:03pm ET</p>
 </header>
+<section>
+<h2>Make a pick</h2>
+<p id="pick-msg" class="note">Loading the pick form.</p>
+<form id="pick-form" class="form">
+<label>Name
+<select id="pick-member" required></select>
+</label>
+<label>Team
+<select id="pick-team" required></select>
+</label>
+<label>PIN
+<input id="pick-pin" type="password" inputmode="numeric" autocomplete="off" minlength="4" maxlength="4" required>
+</label>
+<div class="actions">
+<button type="submit">Lock pick</button>
+<button type="button" id="set-pin" class="secondary">Set PIN</button>
+</div>
+</form>
+<p class="note">Set a PIN once. After that, only a reset in this family thread can clear it. A wrong PIN does not lock the pick.</p>
+</section>
 <section>
 <h2>Standings</h2>
 <p class="tied">All tied at 0-0.</p>
@@ -179,9 +214,10 @@ footer { margin-top: 36px; color: var(--muted); font-size: 14px; }
 </section>
 <footer>
 <p>One pick per person per week. Deadline is kickoff of the team you picked. Tie or no pick is a loss. You cannot reuse your own team. Someone else can pick it the same week.</p>
-<p>Picks are posted in the family Discord thread. This page updates after they are logged.</p>
+<p>Lock a pick here with your PIN, or post it in the family Discord thread. The board updates after it is logged.</p>
 </footer>
 </main>
+<script src="pick-form.js"></script>
 <script>
 (function () {
   var key = "survivor-theme";
